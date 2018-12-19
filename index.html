@@ -2,12 +2,32 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Electron Hello World!</title>
+    <title>Logs Browser</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <script src="scripts/file_man.js"></script>
   </head>
   <body>
-    <h1>Electron Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
+    <h1>Logs Browser</h1>
+    <!--We are using node <script>document.write(process.versions.node)</script>,
     Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    and Electron <script>document.write(process.versions.electron)</script>.-->
+    <div id="test"></div>
+    <hr><a onclick="mainWindow.webContents.openDevTools()">DevTools</a>
+    <hr><a onclick="Exec()">Exec</a>
+
+
   </body>
 </html>
+
+
+
+<script type="text/javascript">
+  document.getElementById('test').innerHTML = "<hr>" + ReadFileSync('package.json');
+
+ function Exec () {
+   RunExec ();
+ }
+ function ExecReturn (data) {
+   document.getElementById('test').innerHTML += "<hr>" + data;
+ }
+</script>
