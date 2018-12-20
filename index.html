@@ -3,66 +3,87 @@
   <head>
     <meta charset="UTF-8">
     <title>Анализатор логов</title>
-    <link rel="stylesheet" type="text/css" href="templates/cyber_2/main.css" />
     <script src="scripts/system.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="templates/cyber_2/main.css" />
+    <script src="templates/cyber_2/main.js"></script>
   </head>
   <body>
+  <!--We are using node <script>document.write(process.versions.node)</script>,
+  Chromium <script>document.write(process.versions.chrome)</script>,
+  and Electron <script>document.write(process.versions.electron)</script>.-->
+
+
 
     <!--     Menu     -->
-    <div id="Menu_Holder" style="">
-      Меню
+    <div id="Menu_Holder">
+      <center><h3>Меню</h3></center>
+      <hr>
+      <table width="100%">
+        <tr>
+          <td>Комманда:</td>
+          <td align="right"><input type="text" id="Input_Exec_Command" value="ls -l" size="15" /></td>
+        </tr>
+        <tr>
+          <td>Сортировка:</td>
+          <td align="right"><input type="text" id="Input_Grep" value="index" size="15" /></td>
+        </tr>
+        <tr>
+          <td>Подсветить:</td>
+          <td align="right"><input type="text" id="Input_Hilight" value="aleksandrpilipenko" size="15" /></td>
+        </tr>
+      </table>
+      <hr><center><button onclick="RunCommand();">Выполнить</button></center>
     </div>
+
+
 
     <!--     Body     -->
-    <div id="Body_Holder" style="width:calc(100% - 202px);float: left;">
-      <h1>Анализатор логов</h1>
-      <!--We are using node <script>document.write(process.versions.node)</script>,
-      Chromium <script>document.write(process.versions.chrome)</script>,
-      and Electron <script>document.write(process.versions.electron)</script>.-->
-      <div id="test"></div>
-      <hr><a onclick="Exec()">Exec</a>
+    <div id="Body_Holder">
+      <div id="Body_Block">
+        <center>
+          <h3>Анализатор логов</h3>
+        </center>
+
+        <hr><div id="test"></div>
+    </div>
     </div>
 
+
+
     <!--     Bottom Menu     -->
-    <div class="bottom_menu">
+    <div class="Bottom_Menu_Holder">
       <!--   Menu   -->
-      <a onclick="Button_Main_Menu()">Меню</a>
+      <img src="images/menu.png" style="height:28px;" onclick="Button_Main_Menu()">
       <!--   DevTools   -->
       <span style="float:right;text-align:right;">
-        <a onclick="mainWindow.webContents.openDevTools()">DevTools</a>
+        <button onclick="mainWindow.webContents.openDevTools()">DevTools</button>
       </span>
     </div>
+
+
 
   </body>
 </html>
 
 
 
+
+
 <script type="text/javascript">
   var mainWindow = require('electron').remote.getGlobal('mainWindow')
+  //document.getElementById('test').innerHTML = "<hr>" + ReadFileSync('package.json');
 
-  document.getElementById('test').innerHTML = "<hr>" + ReadFileSync('package.json');
-
-  function Button_Main_Menu() {
-    menu_holder = document.getElementById("Menu_Holder");
-    body_holder = document.getElementById("Body_Holder");
-    if (menu_holder.style.display == 'none') {
-      menu_holder.style.display = 'block';
-      body_holder.style.width = 'calc(100% - ' + (menu_holder.clientWidth + 2) + 'px)';
-      //body_holder.style.marginLeft = (menu_holder.clientWidth + 2) + 'px';
-    }
-    else {
-      menu_holder.style.display = 'none';
-      body_holder.style.width = 'calc(100%)';
-      //body_holder.style.marginLeft = '0px';
-    }
+  function RunCommand () {
+    var comm = Input_Exec_Command.value;
+    if (Input_Grep.value != "") comm += " | grep \"" + Input_Grep.value + "\"";
+    RunExec(comm);
   }
-
-
-  function Exec () {
-    RunExec ();
-  }
-  function ExecReturn (data) {
-    document.getElementById('test').innerHTML += "<hr>" + data;
+  function ExecReturn (data) { //aleksandrpilipenko
+    data = data.replace(new RegExp('\r?\n','g'), "<br />");
+    if (Input_Hilight.value != "") data = data.replace(new RegExp(Input_Hilight.value, 'g'), "<font color='red'>" + Input_Hilight.value + "</font>");
+    document.getElementById('test').innerHTML += data + "<hr>";
+    document.getElementById('Body_Holder').scrollTop = document.getElementById('Body_Block').clientHeight;
+    //alert(document.getElementById('Body_Block').clientHeight);
   }
 </script>

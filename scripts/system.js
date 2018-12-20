@@ -7,9 +7,10 @@ function ReadFileSync (file) {
 
 
 //      Shell Exec      //
-function RunExec () {
+function RunExec (comm) {
+  //var comm = comm || 'date';
   const { exec } = require('child_process');
-  exec('date', (err, stdout, stderr) => {
+  exec(comm, (err, stdout, stderr) => {
     if (err) {
       return;
     }
@@ -18,6 +19,6 @@ function RunExec () {
     console.log(`stdout: ${stdout}`);
     console.log(`stderr: ${stderr}`);
 
-    ExecReturn (`stdout: ${stdout}`);
+    ExecReturn (stdout);
   });
 }
