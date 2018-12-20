@@ -24,6 +24,16 @@
 <script type="text/javascript">
   document.getElementById('test').innerHTML = "<hr>" + ReadFileSync('package.json');
 
+  //var mainWindow = require('mainWindow')
+  /*const electron = require('electron')
+  const { remote } = require('electron')
+  const { BrowserWindow } = remote
+
+  const { mainWindow } = remote*/
+
+  var mainWindow = require('electron').remote.getGlobal('mainWindow')
+
+
  function Exec () {
    RunExec ();
  }
