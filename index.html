@@ -2,19 +2,36 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Logs Browser</title>
-    <link rel="stylesheet" type="text/css" href="main.css" />
-    <script src="scripts/file_man.js"></script>
+    <title>Анализатор логов</title>
+    <link rel="stylesheet" type="text/css" href="templates/cyber_2/main.css" />
+    <script src="scripts/system.js"></script>
   </head>
   <body>
-    <h1>Logs Browser</h1>
-    <!--We are using node <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.-->
-    <div id="test"></div>
-    <hr><a onclick="mainWindow.webContents.openDevTools()">DevTools</a>
-    <hr><a onclick="Exec()">Exec</a>
 
+    <!--     Menu     -->
+    <div id="Menu_Holder" style="">
+      Меню
+    </div>
+
+    <!--     Body     -->
+    <div id="Body_Holder" style="width:calc(100% - 202px);float: left;">
+      <h1>Анализатор логов</h1>
+      <!--We are using node <script>document.write(process.versions.node)</script>,
+      Chromium <script>document.write(process.versions.chrome)</script>,
+      and Electron <script>document.write(process.versions.electron)</script>.-->
+      <div id="test"></div>
+      <hr><a onclick="Exec()">Exec</a>
+    </div>
+
+    <!--     Bottom Menu     -->
+    <div class="bottom_menu">
+      <!--   Menu   -->
+      <a onclick="Button_Main_Menu()">Меню</a>
+      <!--   DevTools   -->
+      <span style="float:right;text-align:right;">
+        <a onclick="mainWindow.webContents.openDevTools()">DevTools</a>
+      </span>
+    </div>
 
   </body>
 </html>
@@ -22,22 +39,30 @@
 
 
 <script type="text/javascript">
-  document.getElementById('test').innerHTML = "<hr>" + ReadFileSync('package.json');
-
-  //var mainWindow = require('mainWindow')
-  /*const electron = require('electron')
-  const { remote } = require('electron')
-  const { BrowserWindow } = remote
-
-  const { mainWindow } = remote*/
-
   var mainWindow = require('electron').remote.getGlobal('mainWindow')
 
+  document.getElementById('test').innerHTML = "<hr>" + ReadFileSync('package.json');
 
- function Exec () {
-   RunExec ();
- }
- function ExecReturn (data) {
-   document.getElementById('test').innerHTML += "<hr>" + data;
- }
+  function Button_Main_Menu() {
+    menu_holder = document.getElementById("Menu_Holder");
+    body_holder = document.getElementById("Body_Holder");
+    if (menu_holder.style.display == 'none') {
+      menu_holder.style.display = 'block';
+      body_holder.style.width = 'calc(100% - ' + (menu_holder.clientWidth + 2) + 'px)';
+      //body_holder.style.marginLeft = (menu_holder.clientWidth + 2) + 'px';
+    }
+    else {
+      menu_holder.style.display = 'none';
+      body_holder.style.width = 'calc(100%)';
+      //body_holder.style.marginLeft = '0px';
+    }
+  }
+
+
+  function Exec () {
+    RunExec ();
+  }
+  function ExecReturn (data) {
+    document.getElementById('test').innerHTML += "<hr>" + data;
+  }
 </script>

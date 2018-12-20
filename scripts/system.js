@@ -1,8 +1,12 @@
+//      File Manager      //
 function ReadFileSync (file) {
   var fs = require('fs');
   return fs.readFileSync(file, 'utf8');
 }
 
+
+
+//      Shell Exec      //
 function RunExec () {
   const { exec } = require('child_process');
   exec('date', (err, stdout, stderr) => {
