@@ -21,15 +21,15 @@
       <table width="100%">
         <tr>
           <td>Комманда:</td>
-          <td align="right"><input type="text" id="Input_Exec_Command" value="ls -l" size="15" /></td>
+          <td align="right"><input type="text" id="Input_Exec_Command" value="ls -l" size="18" /></td>
         </tr>
         <tr>
           <td>Сортировка:</td>
-          <td align="right"><input type="text" id="Input_Grep" value="index" size="15" /></td>
+          <td align="right"><input type="text" id="Input_Grep" value="index" size="18" /></td>
         </tr>
         <tr>
           <td>Подсветить:</td>
-          <td align="right"><input type="text" id="Input_Hilight" value="aleksandrpilipenko" size="15" /></td>
+          <td align="right"><input type="text" id="Input_Hilight" value="aleksandrpilipenko" size="18" /></td>
         </tr>
       </table>
       <hr><center><button onclick="RunCommand();">Выполнить</button></center>
@@ -57,10 +57,10 @@
     <!--     Bottom Menu     -->
     <div class="Bottom_Menu_Holder">
       <!--   Menu   -->
-      <img src="images/menu.png" style="height:28px;" onclick="Button_Main_Menu()">
+      <img src="images/menu.png" style="height:28px;cursor:pointer;" onclick="Button_Main_Menu()">
       <!--   DevTools   -->
       <span style="float:right;text-align:right;">
-        <button onclick="mainWindow.webContents.openDevTools()">DevTools</button>
+        <img src="images/settings.png" style="height:14px;padding:7px;cursor:pointer;" onclick="Button_DevTools();">
       </span>
     </div>
 
@@ -73,9 +73,19 @@
 
 
 <script type="text/javascript">
-  var mainWindow = require('electron').remote.getGlobal('mainWindow')
-  //document.getElementById('test').innerHTML = "<hr>" + ReadFileSync('package.json');
+  //   Open/Close DevTools   //
+  var mainWindow = require('electron').remote.getGlobal('mainWindow');
+  function Button_DevTools () {
+    if (mainWindow.webContents.isDevToolsOpened()) {
+      mainWindow.webContents.closeDevTools();
+    }
+    else {
+      mainWindow.webContents.openDevTools();
+    }
+  }
 
+
+  //   Run Command   //
   function RunCommand () {
     var comm = Input_Exec_Command.value;
     if (Input_Grep.value != "") comm += " | grep \"" + Input_Grep.value + "\"";
@@ -83,7 +93,8 @@
   }
   function ExecReturn (data) { //aleksandrpilipenko
     data = data.replace(new RegExp('\r?\n','g'), "<br />");
-    if (Input_Hilight.value != "") data = data.replace(new RegExp(Input_Hilight.value, 'g'), "<font color='red'>" + Input_Hilight.value + "</font>");
+    if (Input_Hilight.value != "")
+      data = data.replace(new RegExp(Input_Hilight.value, 'g'), "<font color='red'>" + Input_Hilight.value + "</font>");
     document.getElementById('test').innerHTML += data + "<hr>";
     document.getElementById('Body_Holder').scrollTop = document.getElementById('Body_Block').clientHeight;
     //alert(document.getElementById('Body_Block').clientHeight);

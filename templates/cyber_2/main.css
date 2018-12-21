@@ -4,9 +4,12 @@ body, html{
   margin: 0;
   padding: 0;
   background: #3c4d58;
-  font-size: 16px;
   color: white;
   -webkit-user-select: none;
+
+	font-size:14px;
+	line-height: 1.6;
+	font-family:"Trebuchet MS", verdana, arial, "Times New Roman", serif;
 }
 input{
   border-radius: 5px;
