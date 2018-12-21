@@ -6,6 +6,7 @@ body, html{
   background: #3c4d58;
   font-size: 16px;
   color: white;
+  -webkit-user-select: none;
 }
 input{
   border-radius: 5px;
@@ -13,19 +14,28 @@ input{
 }
 
 .Menu_Holder, #Menu_Holder {
-  width:200px;
+  width:250px;
   /*position: fixed;*/
   float: left;
   height: calc(100% - 31px);
   background: #2c3942;
-  border-right: 1px solid black;
+  /*border-right: 1px solid black;*/
   margin-left: 0px;
   transition:0.3s;
   overflow-x: auto;
 }
 
+.Menu_Body_Separator, #Menu_Body_Separator {
+  width:1px;
+  /*position: fixed;*/
+  float: left;
+  height: calc(100% - 31px);
+  background: black;
+  cursor: col-resize;
+}
+
 .Body_Holder, #Body_Holder {
-  width:calc(100% - 201px);
+  width:calc(100% - 251px);
   float: left;
   height: calc(100% - 31px);
   /*margin-left: 201px;*/
@@ -42,5 +52,4 @@ input{
   background: #2c3942;
   border-top: 1px solid black;
   font-size: 20px;
-  -webkit-user-select: none;
 }

@@ -14,7 +14,6 @@
   and Electron <script>document.write(process.versions.electron)</script>.-->
 
 
-
     <!--     Menu     -->
     <div id="Menu_Holder">
       <center><h3>Меню</h3></center>
@@ -36,7 +35,12 @@
       <hr><center><button onclick="RunCommand();">Выполнить</button></center>
     </div>
 
-
+    <div id="Menu_Body_Separator"></div>
+    <script type="text/javascript">
+    Menu_Body_Separator.onmousedown = function(e) {Enable_Change_Menu_Width (e);}
+    document.body.onmouseup = function(e) {Disable_Change_Menu_Width (e);}
+    document.body.onmousemove = function(e) {Change_Menu_Width (e);}
+    </script>
 
     <!--     Body     -->
     <div id="Body_Holder">
@@ -46,9 +50,8 @@
         </center>
 
         <hr><div id="test"></div>
+      </div>
     </div>
-    </div>
-
 
 
     <!--     Bottom Menu     -->
@@ -60,7 +63,6 @@
         <button onclick="mainWindow.webContents.openDevTools()">DevTools</button>
       </span>
     </div>
-
 
 
   </body>
