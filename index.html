@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Анализатор логов</title>
     <script src="scripts/system.js"></script>
+    <script src="scripts/keyboard.js"></script>
 
     <link rel="stylesheet" type="text/css" href="templates/cyber_2/main.css" />
     <script src="templates/cyber_2/main.js"></script>
@@ -57,10 +58,10 @@
     <!--     Bottom Menu     -->
     <div class="Bottom_Menu_Holder">
       <!--   Menu   -->
-      <img src="images/menu.png" style="height:28px;cursor:pointer;" onclick="Button_Main_Menu()">
+      <img class="Clicable" src="images/menu.png" style="height:28px;" onclick="Button_Main_Menu()">
       <!--   DevTools   -->
       <span style="float:right;text-align:right;">
-        <img src="images/settings.png" style="height:14px;padding:7px;cursor:pointer;" onclick="Button_DevTools();">
+        <img class="Clicable" src="images/settings.png" style="height:14px;padding:7px;" onclick="Button_DevTools();">
       </span>
     </div>
 
@@ -85,10 +86,18 @@
   }
 
 
+
+
+  function OnEnter() {RunCommand ();}
+  function OnEscape() {Button_Main_Menu ();}
+
+
+
   //   Run Command   //
   function RunCommand () {
     var comm = Input_Exec_Command.value;
     if (Input_Grep.value != "") comm += " | grep \"" + Input_Grep.value + "\"";
+    document.getElementById('test').innerHTML += "<font color='teal'>Команда: " + comm + "</font><hr color='teal'>";
     RunExec(comm);
   }
   function ExecReturn (data) { //aleksandrpilipenko

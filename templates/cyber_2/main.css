@@ -11,10 +11,14 @@ body, html{
 	line-height: 1.6;
 	font-family:"Trebuchet MS", verdana, arial, "Times New Roman", serif;
 }
-input{
+input[type=text]{
   border-radius: 5px;
   text-align: center;
 }
+/*button{
+  border-radius: 0px;
+  background: #2c3942;
+}*/
 
 .Menu_Holder, #Menu_Holder {
   width:250px;
@@ -55,4 +59,12 @@ input{
   background: #2c3942;
   border-top: 1px solid black;
   font-size: 20px;
+}
+
+
+.Clicable {
+  cursor: pointer;
+}
+.Clicable:hover {
+  background: #3c4d58;
 }
