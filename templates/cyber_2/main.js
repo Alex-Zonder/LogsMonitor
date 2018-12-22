@@ -37,3 +37,14 @@ function Disable_Change_Menu_Width () {
   Menu_Holder.style.transition = "0.3s";
   Body_Holder.style.transition = "0.3s";
 }
+
+
+function MenuCloseAll() {
+  Main.style.display = "none";
+  Trminal.style.display = "none";
+  Files.style.display = "none";
+}
+function MenuOpen(obj) {
+  MenuCloseAll();
+  obj.style.display = "block";
+}

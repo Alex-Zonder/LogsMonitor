@@ -17,8 +17,13 @@
 
     <!--     Menu     -->
     <div id="Menu_Holder">
-      <center><h3>Меню</h3></center>
-      <hr>
+      <div id="Head">Меню</div>
+
+      <div class="menu_but" id="index" onclick="MenuOpen(Main);">- Главная</div>
+      <div class="menu_but" id="index" onclick="MenuOpen(Trminal);">- Терминал</div>
+      <div class="menu_but" id="index" onclick="MenuOpen(Files);">- Файлы</div>
+
+      <center>Терминал</center>
       <table width="100%">
         <tr>
           <td>Комманда:</td>
@@ -26,14 +31,14 @@
         </tr>
         <tr>
           <td>Сортировка:</td>
-          <td align="right"><input type="text" id="Input_Grep" value="index" size="18" /></td>
+          <td align="right"><input type="text" id="Input_Grep" value="index\|js" size="18" /></td>
         </tr>
         <tr>
           <td>Подсветить:</td>
           <td align="right"><input type="text" id="Input_Hilight" value="aleksandrpilipenko" size="18" /></td>
         </tr>
       </table>
-      <hr><center><button onclick="RunCommand();">Выполнить</button></center>
+      <center><button onclick="RunCommand();">Выполнить</button></center>
     </div>
 
     <div id="Menu_Body_Separator"></div>
@@ -43,16 +48,44 @@
     document.body.onmousemove = function(e) {Change_Menu_Width (e);}
     </script>
 
+
+
+
+
+
+
+
     <!--     Body     -->
     <div id="Body_Holder">
-      <div id="Body_Block">
-        <center>
-          <h3>Анализатор логов</h3>
-        </center>
 
-        <hr><div id="test"></div>
+      <!--   Terminal   -->
+      <div id="Main">
+        <script type="text/javascript">
+          document.write(ReadFileSync("./main.html"));
+        </script>
       </div>
+
+      <!--   Terminal   -->
+      <div id="Trminal" style="display:none;height:100%;">
+        <script type="text/javascript">
+          document.write(ReadFileSync("./terminal.html"));
+        </script>
+      </div>
+
+      <!--   Files   -->
+      <div id="Files" style="display:none;">
+        <script type="text/javascript">
+          document.write(ReadFileSync("./files.html"));
+        </script>
+      </div>
+
     </div>
+
+
+
+
+
+
 
 
     <!--     Bottom Menu     -->
@@ -86,8 +119,7 @@
   }
 
 
-
-
+  //   Add Keyboard Events   //
   function OnEnter() {RunCommand ();}
   function OnEscape() {Button_Main_Menu ();}
 
@@ -105,7 +137,7 @@
     if (Input_Hilight.value != "")
       data = data.replace(new RegExp(Input_Hilight.value, 'g'), "<font color='red'>" + Input_Hilight.value + "</font>");
     document.getElementById('test').innerHTML += data + "<hr>";
-    document.getElementById('Body_Holder').scrollTop = document.getElementById('Body_Block').clientHeight;
+    document.getElementById('Body_Block').scrollTop = document.getElementById('test').clientHeight;
     //alert(document.getElementById('Body_Block').clientHeight);
   }
 </script>
