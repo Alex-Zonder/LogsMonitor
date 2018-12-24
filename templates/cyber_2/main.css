@@ -110,7 +110,7 @@ input[type=text]{
 	color: #AAAAAA;/*#565f7c;*/
 	font-family:"Trebuchet MS", verdana, arial, "Times New Roman", serif;
 }/*#4f63ab*/
-.menu_but:hover{
+.menu_but:hover, .menu_but_clicked:hover{
 	background: var(--color_2);
 	text-shadow: 2px 2px 3px  rgba(0, 0, 0, 0.5);
 	background: radial-gradient(circle at center, var(--color_1) 0%, var(--color_2) 100%);
@@ -118,6 +118,9 @@ input[type=text]{
   color: #EEEEEE;/*#565f7c;*/
 }
 .menu_but_clicked{
+  color: teal;
+}
+.menu_but_clicked:hover{
   color: teal;
 }
 
