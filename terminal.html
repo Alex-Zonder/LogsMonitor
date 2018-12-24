@@ -2,3 +2,32 @@
 <div id="Body_Block">
   <div id="test"></div>
 </div>
+
+
+<script>
+  //RunExecMultiple("ping 8.8.8.8 -c 4");
+  //   Run Command   //
+  function RunCommandSpawn () {
+    var comm = Input_Spawn_Command.value;
+    RunSpawn(comm);
+  }
+
+
+  //   Run Command   //
+  function RunCommand () {
+    var comm = Input_Exec_Command.value;
+    if (Input_Grep.value != "") comm += " | grep \"" + Input_Grep.value + "\"";
+    document.getElementById('test').innerHTML += "<font color='teal'>Команда: " + comm + "</font><hr color='teal'>";
+    RunExec(comm);
+  }
+  function ExecReturn (data) { //aleksandrpilipenko
+    data = data.replace(new RegExp('\r?\n','g'), "<br />");
+    //if (Input_Hilight.value != "")
+      //data = data.replace(new RegExp(Input_Hilight.value, 'g'), "<font color='red'>" + Input_Hilight.value + "</font>");
+    data = Hilight(data);
+
+    document.getElementById('test').innerHTML += data + "<hr>";
+    document.getElementById('Body_Block').scrollTop = document.getElementById('test').clientHeight;
+    //alert(document.getElementById('Body_Block').clientHeight);
+  }
+</script>

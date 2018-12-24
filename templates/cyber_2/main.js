@@ -39,12 +39,19 @@ function Disable_Change_Menu_Width () {
 }
 
 
+
 function MenuCloseAll() {
   Main.style.display = "none";
+  But_Main.className = "menu_but";
   Trminal.style.display = "none";
+  But_Trminal.className = "menu_but";
   Files.style.display = "none";
+  But_Files.className = "menu_but";
+  Settings.style.display = "none";
+  But_Settings.className = "menu_but";
 }
 function MenuOpen(obj) {
   MenuCloseAll();
-  obj.style.display = "block";
+  document.getElementById(obj).style.display = "block";
+  document.getElementById("But_" + obj).className = "menu_but_clicked";
 }

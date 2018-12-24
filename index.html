@@ -19,9 +19,10 @@
     <div id="Menu_Holder">
       <div id="Head">Меню</div>
 
-      <div class="menu_but" id="index" onclick="MenuOpen(Main);">- Главная</div>
-      <div class="menu_but" id="index" onclick="MenuOpen(Trminal);">- Терминал</div>
-      <div class="menu_but" id="index" onclick="MenuOpen(Files);">- Файлы</div>
+      <div class="menu_but_clicked" id="But_Main" onclick="MenuOpen('Main');">- Главная</div>
+      <div class="menu_but" id="But_Files" onclick="MenuOpen('Files');">- Файлы</div>
+      <div class="menu_but" id="But_Trminal" onclick="MenuOpen('Trminal');">- Терминал</div>
+      <div class="menu_but" id="But_Settings" onclick="MenuOpen('Settings');">- Настройки</div>
 
       <center>Терминал</center>
       <table width="100%">
@@ -33,12 +34,23 @@
           <td>Сортировка:</td>
           <td align="right"><input type="text" id="Input_Grep" value="index\|js" size="18" /></td>
         </tr>
+      </table>
+      <center><button onclick="MenuOpen('Trminal');RunCommand();">Выполнить</button></center>
+
+      <hr>
+      <center>Терминал Spawn</center>
+      <table width="100%">
         <tr>
-          <td>Подсветить:</td>
-          <td align="right"><input type="text" id="Input_Hilight" value="aleksandrpilipenko" size="18" /></td>
+          <td>Комманда:</td>
+          <td align="right">
+            <input type="text" id="Input_Spawn_Command" value="ping 8.8.8.8" size="18" />
+          </td>
         </tr>
       </table>
-      <center><button onclick="RunCommand();">Выполнить</button></center>
+      <center>
+        <button onclick="MenuOpen('Trminal');RunCommandSpawn();">Отправить</button>
+        | <button onclick='StopSpawn();'>Стоп</button>
+      </center>
     </div>
 
     <div id="Menu_Body_Separator"></div>
@@ -76,6 +88,13 @@
       <div id="Files" style="display:none;">
         <script type="text/javascript">
           document.write(ReadFileSync("./files.html"));
+        </script>
+      </div>
+
+      <!--   Settings   -->
+      <div id="Settings" style="display:none;">
+        <script type="text/javascript">
+          document.write(ReadFileSync("./settings.html"));
         </script>
       </div>
 
@@ -125,19 +144,6 @@
 
 
 
-  //   Run Command   //
-  function RunCommand () {
-    var comm = Input_Exec_Command.value;
-    if (Input_Grep.value != "") comm += " | grep \"" + Input_Grep.value + "\"";
-    document.getElementById('test').innerHTML += "<font color='teal'>Команда: " + comm + "</font><hr color='teal'>";
-    RunExec(comm);
-  }
-  function ExecReturn (data) { //aleksandrpilipenko
-    data = data.replace(new RegExp('\r?\n','g'), "<br />");
-    if (Input_Hilight.value != "")
-      data = data.replace(new RegExp(Input_Hilight.value, 'g'), "<font color='red'>" + Input_Hilight.value + "</font>");
-    document.getElementById('test').innerHTML += data + "<hr>";
-    document.getElementById('Body_Block').scrollTop = document.getElementById('test').clientHeight;
-    //alert(document.getElementById('Body_Block').clientHeight);
-  }
+
+
 </script>
