@@ -1,4 +1,4 @@
-var menu_width = 250;
+var menu_width = 150;
 function Button_Main_Menu() {
   menu_holder = document.getElementById("Menu_Holder");
   menu_body_separator = document.getElementById("Menu_Body_Separator");

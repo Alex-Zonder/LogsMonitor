@@ -1,11 +1,50 @@
-<div class="Head">Файлы</div>
+<div class="Head" id="Head_Files">Файлы</div>
 <div class="Body_Block">
-  <div id="File_Manager"></div>
+  <div id="File_Manager" style="width:calc(20% - 1px);border-right:1px solid black;float:left;height:100%;overflow:auto;background:var(--color_2);"></div>
+  <div  id="File_Bowser"style="width:80%;float:left;height:100%;overflow:auto;"></div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  //      Read Dir      //
-  ReadDirSynk ('./');
-  //File_Manager.innerHTML += "<hr>123<hr>";
+function HtmlToView (data) {
+  data = data.replace(new RegExp('<','g'), "&lt");
+  data = data.replace(new RegExp('\r?\n','g'), "<br>");
+  data = data.replace(new RegExp(" ",'g'), "&nbsp;");
+  return data;
+}
+
+function ViewFile (pach,file) {
+  var data = ReadFileSync (pach + file);
+  data = HtmlToView(data);
+
+  File_Bowser.innerHTML = Hilight(data);
+  //File_Bowser_Textarea.innerHTML = data;
+
+  document.getElementById("Head_Files").innerHTML = "Файл: " + pach + file;
+}
+function ViewFileInTerminal (pach,file) {
+  MenuOpen('Trminal');
+  Input_Exec_Command.value = 'cat ' + pach + file;
+  Input_Grep.value = '';
+  RunCommand();
+}
+
+
+
+function DrawFile (pach,file) {
+  var html = "<a onclick=\"ViewFile(\'" + pach + "\',\'" + file + "\')\">" + file + '</a><br>';
+  File_Manager.innerHTML += html;
+}
+
+var root_pach = __dirname + "/";
+var pach = root_pach; //'/Users/aleksandrpilipenko/myhome/logs/myhome/';
+ReadDirToArray (pach, function (files) {
+  document.getElementById("Head_Files").innerHTML = "Путь: " + pach;
+  for (var x=0; files[x]; x++) {
+    DrawFile (pach,files[x]);
+  }
+  //File_Manager.innerHTML += "<hr>" + ToJson(files);
+});
 </script>

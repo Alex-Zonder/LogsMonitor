@@ -54,14 +54,15 @@
   function RunCommand () {
     var comm = Input_Exec_Command.value;
     if (Input_Grep.value != "") comm += " | grep \"" + Input_Grep.value + "\"";
-    document.getElementById('Div_Terminal_Return').innerHTML += "<font color='teal'>Команда: " + comm + "</font><hr color='teal'>";
+    document.getElementById('Div_Terminal_Return').innerHTML += "<hr color='teal'><font color='teal'>Команда: " + comm + "</font><hr color='teal'>";
     RunExec(comm);
   }
   function ExecReturn (data) { //aleksandrpilipenko
     data = data.replace(new RegExp('\r?\n','g'), "<br />");
     data = Hilight(data);
+    if (data == "STOPED") data += "<hr>";
 
-    document.getElementById('Div_Terminal_Return').innerHTML += data + "<hr>";
+    document.getElementById('Div_Terminal_Return').innerHTML += data;
     document.getElementById('Body_Block').scrollTop = document.getElementById('Div_Terminal_Return').clientHeight;
   }
 </script>

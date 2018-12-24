@@ -55,23 +55,27 @@ function ReadFileSync (file) {
 
 
 
-//      Read Dir      //
-function ReadDir (folder) {
-  var folder =  folder || './';
-  const fs = require('fs');
-  fs.readdir(folder, (err, files) => {
-    files.forEach(file => {
-      console.log(file);
-      File_Manager.innerHTML += file + "<br>";
-    });
-  })
-}
 
 function ReadDirSynk(folder) {
   var folder =  folder || './';
   const fs = require('fs');
   fs.readdirSync(folder).forEach(file => {
-    console.log(file);
     File_Manager.innerHTML += file + "<br>";
   })
+  if (fs.existsSync(folder)) {
+    File_Manager.innerHTML += "<hr>Done reading files.";
+  }
+}
+
+
+function ReadDirToArray (folder,callback) {
+  var folder =  folder || './';
+  const fs = require('fs');
+  var files = [];
+  fs.readdirSync(folder).forEach(file => {
+    files.push(file);
+  })
+  if (fs.existsSync(folder)) {
+    callback(files);
+  }
 }
