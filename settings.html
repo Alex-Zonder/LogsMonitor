@@ -8,11 +8,15 @@
 <table width="100%">
   <tr>
     <td><font color="red">Подсветить:</font></td>
-    <td align="right"><input type="text" id="Input_Hilight_Red" value="aleksandrpilipenko" size="18" /></td>
+    <td align="right"><input type="text" id="Input_Hilight_Red" value="timeout" size="18" /></td>
   </tr>
   <tr>
     <td><font color="green">Подсветить:</font></td>
     <td align="right"><input type="text" id="Input_Hilight_Green" value="8.8.8.8" size="18" /></td>
+  </tr>
+  <tr>
+    <td><font color="yellow">Подсветить:</font></td>
+    <td align="right"><input type="text" id="Input_Hilight_Yellow" value="aleksandrpilipenko" size="18" /></td>
   </tr>
 </table>
 
@@ -38,6 +42,11 @@ function Hilight (data) {
   var data_green = document.getElementById("Input_Hilight_Green").value;
   if (data_green != "")
     data = data.replace(new RegExp(data_green, 'g'), "<font color='green'>" + data_green + "</font>");
+
+  // Yellow //
+  var data_yellow = document.getElementById("Input_Hilight_Yellow").value;
+  if (data_yellow != "")
+    data = data.replace(new RegExp(data_yellow, 'g'), "<font color='yellow'>" + data_yellow + "</font>");
 
   return data;
 }
