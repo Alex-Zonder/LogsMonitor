@@ -24,33 +24,6 @@
       <div class="menu_but" id="But_Trminal" onclick="MenuOpen('Trminal');">- Терминал</div>
       <div class="menu_but" id="But_Settings" onclick="MenuOpen('Settings');">- Настройки</div>
 
-      <center>Терминал</center>
-      <table width="100%">
-        <tr>
-          <td>Комманда:</td>
-          <td align="right"><input type="text" id="Input_Exec_Command" value="ls -l" size="18" /></td>
-        </tr>
-        <tr>
-          <td>Сортировка:</td>
-          <td align="right"><input type="text" id="Input_Grep" value="index\|js" size="18" /></td>
-        </tr>
-      </table>
-      <center><button onclick="MenuOpen('Trminal');RunCommand();">Выполнить</button></center>
-
-      <hr>
-      <center>Терминал Spawn</center>
-      <table width="100%">
-        <tr>
-          <td>Комманда:</td>
-          <td align="right">
-            <input type="text" id="Input_Spawn_Command" value="ping 8.8.8.8" size="18" />
-          </td>
-        </tr>
-      </table>
-      <center>
-        <button onclick="MenuOpen('Trminal');RunCommandSpawn();">Отправить</button>
-        | <button onclick='StopSpawn();'>Стоп</button>
-      </center>
     </div>
 
     <div id="Menu_Body_Separator"></div>
