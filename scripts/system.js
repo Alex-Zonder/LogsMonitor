@@ -56,7 +56,7 @@ function ReadFileSync (file) {
 
 
 
-function ReadDirSynk(folder) {
+/*function ReadDirSynk(folder) {
   var folder =  folder || './';
   const fs = require('fs');
   fs.readdirSync(folder).forEach(file => {
@@ -65,17 +65,18 @@ function ReadDirSynk(folder) {
   if (fs.existsSync(folder)) {
     File_Manager.innerHTML += "<hr>Done reading files.";
   }
-}
+}*/
 
 
-function ReadDirToArray (folder,callback) {
-  var folder =  folder || './';
-  const fs = require('fs');
-  var files = [];
-  fs.readdirSync(folder).forEach(file => {
-    files.push(file);
-  })
-  if (fs.existsSync(folder)) {
-    callback(files);
-  }
+function ReadDirToArraySync (pach,callback) {
+	var pach =  pach || './';
+	var files = [];
+	const fs = require('fs');
+	fs.readdirSync(pach).forEach(file => {
+		var isFile = fs.lstatSync(pach+file).isFile();
+		files.push({"pach":pach,"name":file,"isFile":isFile});
+	});
+	if (fs.existsSync(pach)) {
+		callback(files);
+	}
 }

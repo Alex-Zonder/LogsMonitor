@@ -1,7 +1,7 @@
 <div class="Head" id="Head_Files">Файлы</div>
 <div class="Body_Block">
   <div id="File_Manager" style="width:calc(20% - 1px);border-right:1px solid black;float:left;height:100%;overflow:auto;background:var(--color_2);"></div>
-  <div  id="File_Bowser"style="width:80%;float:left;height:100%;overflow:auto;"></div>
+  <div  id="File_Bowser"style="width:80%;float:left;height:100%;overflow:auto;-webkit-user-select: text;"></div>
 </div>
 
 
@@ -9,42 +9,57 @@
 
 <script type="text/javascript">
 function HtmlToView (data) {
-  data = data.replace(new RegExp('<','g'), "&lt");
-  data = data.replace(new RegExp('\r?\n','g'), "<br>");
-  data = data.replace(new RegExp(" ",'g'), "&nbsp;");
-  return data;
+	data = data.replace(new RegExp('<','g'), "&lt");
+	data = data.replace(new RegExp('\r?\n','g'), "<br>");
+	data = data.replace(new RegExp(" ",'g'), "&nbsp;");
+	data = data.replace(new RegExp("\t",'g'), "&nbsp;&nbsp;&nbsp;&nbsp;");
+	return data;
 }
 
 function ViewFile (pach,file) {
-  var data = ReadFileSync (pach + file);
-  data = HtmlToView(data);
+	var data = ReadFileSync (pach + file);
+	data = HtmlToView(data);
 
-  File_Bowser.innerHTML = Hilight(data);
-  //File_Bowser_Textarea.innerHTML = data;
+	File_Bowser.innerHTML = Hilight(data);
+	//File_Bowser_Textarea.innerHTML = data;
 
-  document.getElementById("Head_Files").innerHTML = "Файл: " + pach + file;
+	document.getElementById("Head_Files").innerHTML = "Файл: " + pach + file;
 }
-function ViewFileInTerminal (pach,file) {
+
+/*function ViewFileInTerminal (pach,file) {
   MenuOpen('Trminal');
   Input_Exec_Command.value = 'cat ' + pach + file;
   Input_Grep.value = '';
   RunCommand();
+}*/
+
+
+
+function DrawDir (pach,file) {
+	var html = "<a style=\"color:black;\" onclick=\"OpenDir(\'" + pach + file + "/\')\">" + file + '</a><br>';
+	File_Manager.innerHTML += html;
 }
 
-
-
 function DrawFile (pach,file) {
-  var html = "<a onclick=\"ViewFile(\'" + pach + "\',\'" + file + "\')\">" + file + '</a><br>';
-  File_Manager.innerHTML += html;
+	var html = "<a onclick=\"ViewFile(\'" + pach + "\',\'" + file + "\')\">" + file + '</a><br>';
+	File_Manager.innerHTML += html;
 }
 
 var root_pach = __dirname + "/";
-var pach = root_pach; //'/Users/aleksandrpilipenko/myhome/logs/myhome/';
-ReadDirToArray (pach, function (files) {
-  document.getElementById("Head_Files").innerHTML = "Путь: " + pach;
-  for (var x=0; files[x]; x++) {
-    DrawFile (pach,files[x]);
-  }
-  //File_Manager.innerHTML += "<hr>" + ToJson(files);
-});
+var pach = root_pach;
+//var pach = '/Users/aleksandrpilipenko/myhome/logs/myhome/';
+function OpenDir (pach) {
+	File_Manager.innerHTML = "";
+	ReadDirToArraySync (pach, function (files) {
+		document.getElementById("Head_Files").innerHTML = "Путь: " + pach;
+		for (var x=0; files[x]; x++) {
+			if (!files[x]['isFile']) DrawDir (pach,files[x]['name']);
+		}
+		for (var x=0; files[x]; x++) {
+			if (files[x]['isFile']) DrawFile (pach,files[x]['name']);
+		}
+		//File_Manager.innerHTML += "<hr>" + ToJson(files);
+	});
+}
+OpenDir(pach);
 </script>
