@@ -41,8 +41,8 @@ function Disable_Change_Menu_Width () {
 
 
 function MenuCloseAll() {
-  Main.style.display = "none";
-  But_Main.className = "menu_but";
+  /*Main.style.display = "none";
+  But_Main.className = "menu_but";*/
   Trminal.style.display = "none";
   But_Trminal.className = "menu_but";
   Files.style.display = "none";

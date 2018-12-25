@@ -1,9 +1,41 @@
+<style media="screen">
+.Bread {
+	cursor:pointer;
+	float:left;
+}
+.Bread:hover {
+	color: teal;
+}
+
+.File {
+	width:100%;
+	cursor:pointer;
+	display:block-inline;
+}
+.File:hover {
+	color: teal;
+}
+.Directory {
+	width:100%;
+	cursor:pointer;
+	display:block-inline;
+	color:black;
+}
+.Directory:hover {
+	color: teal;
+}
+</style>
+
+
 <div class="Head" id="Head_Files"></div>
 <div class="Body_Block" style="height:calc(100% - 62px);">
   <div id="File_Manager" style="width:calc(25% - 1px);border-right:1px solid black;float:left;height:100%;overflow:auto;background:var(--color_2);"></div>
   <div  id="File_Bowser"style="width:75%;float:left;height:100%;overflow:auto;-webkit-user-select: text;"></div>
 </div>
-<div class="Foot" id="Info_Files">Инфо</div>
+<div class="Foot">
+	<div id="File_Info_Dir" style="width:50%;float:left;text-align:left;"></div>
+	<div id="File_Info_File" style="width:50%;float:right;text-align:right;"></div>
+</div>
 
 
 
@@ -20,10 +52,10 @@ function HtmlToView (data) {
 function DrawBreadroom (pach) {
 	var dirs = pach.split('/');
 	var pach = "/";
-	var html = "<a style='cursor:pointer;' onclick='OpenDir(\"/\")'>Корень</a>/";
+	var html = "<div class='Bread' onclick='OpenDir(\"/\")'>Корень/</div>";
 	for (var x=1; dirs[x]; x++) {
 		pach += dirs[x] + "/";
-		html += "<a style='cursor:pointer;' onclick='OpenDir(\"" + pach + "\")'>" + dirs[x] + "</a>/";
+		html += "<div class='Bread' onclick='OpenDir(\"" + pach + "\")'>" + dirs[x] + "/</div>";
 	}
 	document.getElementById("Head_Files").innerHTML = html;
 }
@@ -42,7 +74,10 @@ function OpenFile (pach,file) {
 
 	DrawBreadroom (pach + file);
 
-	Info_Files.innerHTML = "Строк: " + str_counter + " | Размер: " + file_lenght;
+	if (file_lenght<1024) file_lenght += " Б";
+	else if (file_lenght<1024*1024) file_lenght = (file_lenght / 1024).toFixed(2) + " кБ";
+	else if (file_lenght<1024*1024*1024) file_lenght = (file_lenght / 1024 / 1024).toFixed(2) + " мБ";
+	File_Info_File.innerHTML = "Строк: " + str_counter + " | Размер: " + file_lenght;
 }
 
 /*function ViewFileInTerminal (pach,file) {
@@ -55,12 +90,14 @@ function OpenFile (pach,file) {
 
 
 function DrawDir (pach,file) {
-	var html = "<a style='color:black;cursor:pointer;' onclick=\"OpenDir(\'" + pach + file + "/\')\">" + file + '</a><br>';
+	var html = "<div class='Directory' onclick=\"OpenDir(\'" + pach + file + "/\')\">" + file + '</div>';
 	File_Manager.innerHTML += html;
 }
 
 function DrawFile (pach,file) {
-	var html = "<a style='cursor:pointer;' onclick=\"OpenFile(\'" + pach + "\',\'" + file + "\')\">" + file + '</a><br>';
+	var html = "<div class='File' onclick=\"OpenFile(\'" + pach + "\',\'" + file + "\')\">" + file + '</div>';
+	//var hil = require('./settings.js');
+	//html = hil.Hilight (html);
 	File_Manager.innerHTML += html;
 }
 
@@ -86,7 +123,7 @@ function OpenDir (pach) {
 			}
 		}
 		//File_Manager.innerHTML += "<hr>" + ToJson(files);
-		Info_Files.innerHTML = "Папок: " + dirs_counter + " | Файлов: " + files_counter;
+		File_Info_Dir.innerHTML = "Папок: " + dirs_counter + " | Файлов: " + files_counter;
 	});
 }
 OpenDir(pach);
