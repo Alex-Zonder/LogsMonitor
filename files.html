@@ -5,6 +5,7 @@
 }
 .Bread:hover {
 	color: teal;
+	background:  var(--color_1);
 }
 
 .File {
@@ -14,15 +15,17 @@
 }
 .File:hover {
 	color: teal;
+	background:  var(--color_1);
 }
 .Directory {
 	width:100%;
 	cursor:pointer;
 	display:block-inline;
-	color:black;
+	color:#AAAAAA;
 }
 .Directory:hover {
 	color: teal;
+	background:  var(--color_1);
 }
 </style>
 
@@ -90,12 +93,14 @@ function OpenFile (pach,file) {
 
 
 function DrawDir (pach,file) {
-	var html = "<div class='Directory' onclick=\"OpenDir(\'" + pach + file + "/\')\">" + file + '</div>';
+	var html = "<div class='Directory' onclick=\"OpenDir(\'" + pach + file + "/\')\">";
+	html += "<img src='./images/folder-2.png' height='16'style='margin: 3px 2px -3px 2px;'>" + file + '</div>';
 	File_Manager.innerHTML += html;
 }
 
 function DrawFile (pach,file) {
-	var html = "<div class='File' onclick=\"OpenFile(\'" + pach + "\',\'" + file + "\')\">" + file + '</div>';
+	var html = "<div class='File' onclick=\"OpenFile(\'" + pach + "\',\'" + file + "\')\">";
+	html += "<img src='./images/file-2.png' height='16'style='margin: 3px 6px -3px 6px;'>" + file + '</div>';
 	//var hil = require('./settings.js');
 	//html = hil.Hilight (html);
 	File_Manager.innerHTML += html;
