@@ -1,5 +1,14 @@
 {
-  "name"    : "talmer-logs-analizer",
-  "version" : "0.1.0",
-  "main"    : "main.js"
+  "name": "talmer-logs-analizer",
+  "version": "0.1.0",
+  "main": "main.js",
+  "description": "first_test",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^4.0.0"
+  }
 }

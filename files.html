@@ -32,8 +32,10 @@
 
 <div class="Head" id="Head_Files"></div>
 <div class="Body_Block" style="height:calc(100% - 62px);">
-  <div id="File_Manager" style="width:calc(25% - 1px);border-right:1px solid black;float:left;height:100%;overflow:auto;background:var(--color_2);"></div>
-  <div  id="File_Bowser"style="width:75%;float:left;height:100%;overflow:auto;-webkit-user-select: text;"></div>
+  <div style="width:199px;border-right:1px solid black;float:left;height:100%;overflow:auto;background:var(--color_2);">
+	  <div id="File_Manager" style="width:100%;"></div>
+  </div>
+  <div  id="File_Bowser"style="width:calc(100% - 200px);float:left;height:100%;overflow:auto;-webkit-user-select: text;"></div>
 </div>
 <div class="Foot">
 	<div id="File_Info_Dir" style="width:50%;float:left;text-align:left;"></div>
@@ -93,14 +95,14 @@ function OpenFile (pach,file) {
 
 
 function DrawDir (pach,file) {
-	var html = "<div class='Directory' onclick=\"OpenDir(\'" + pach + file + "/\')\">";
-	html += "<img src='./images/folder-2.png' height='16'style='margin: 3px 2px -3px 2px;'>" + file + '</div>';
+	var html = "<nobr><div class='Directory' onclick=\"OpenDir(\'" + pach + file + "/\')\">";
+	html += "<img src='./images/folder-2.png' height='16'style='margin: 3px 2px -3px 2px;'>" + file + '</div></nobr>';
 	File_Manager.innerHTML += html;
 }
 
 function DrawFile (pach,file) {
-	var html = "<div class='File' onclick=\"OpenFile(\'" + pach + "\',\'" + file + "\')\">";
-	html += "<img src='./images/file-2.png' height='16'style='margin: 3px 6px -3px 6px;'>" + file + '</div>';
+	var html = "<nobr><div class='File' onclick=\"OpenFile(\'" + pach + "\',\'" + file + "\')\">";
+	html += "<img src='./images/file-2.png' height='16'style='margin: 3px 6px -3px 6px;'>" + file + '</div></nobr>';
 	//var hil = require('./settings.js');
 	//html = hil.Hilight (html);
 	File_Manager.innerHTML += html;

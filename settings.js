@@ -1,4 +1,3 @@
-//function Setts () {
 var Hilight = function (data) {
   // Red //
   var data_red = document.getElementById("Input_Hilight_Red").value;
@@ -37,4 +36,3 @@ var Hilight_File = function (data) {
 
   return data;
 }
-//}

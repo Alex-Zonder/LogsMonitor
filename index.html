@@ -15,16 +15,21 @@
   and Electron <script>document.write(process.versions.electron)</script>.-->
 
 
-    <!--     Menu     -->
-    <div id="Menu_Holder">
-      <div id="Head">Меню</div>
+	<!--     Menu     -->
+	<div id="Menu_Holder">
+		<div id="Head">Меню</div>
+		<nobr>
 
-      <!--<div class="menu_but_clicked" id="But_Main" onclick="MenuOpen('Main');">- Главная</div>-->
-      <div class="menu_but_clicked" id="But_Files" onclick="MenuOpen('Files');">- Файлы</div>
-      <div class="menu_but" id="But_Trminal" onclick="MenuOpen('Trminal');">- Терминал</div>
-      <div class="menu_but" id="But_Settings" onclick="MenuOpen('Settings');">- Настройки</div>
+		<!--<div class="menu_but_clicked" id="But_Main" onclick="MenuOpen('Main');">- Главная</div>-->
+		<div class="menu_but_clicked" id="But_Files" onclick="MenuOpen('Files');">
+			<img src="./images/folder.png" height='22'style='margin: 3px 2px -3px 2px;'> Файлы</div>
+		<div class="menu_but" id="But_Trminal" onclick="MenuOpen('Trminal');">
+			<img src="./images/term-3.png" height='22'style='margin: 3px 2px -3px 2px;'> Терминал</div>
+		<div class="menu_but" id="But_Settings" onclick="MenuOpen('Settings');">
+			<img src="./images/settings.png" height='20'style='margin: 3px 4px -3px 4px;'> Настройки</div>
 
-    </div>
+		</nobr>
+	</div>
 
     <div id="Menu_Body_Separator"></div>
     <script type="text/javascript">
