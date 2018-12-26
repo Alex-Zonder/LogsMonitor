@@ -55,11 +55,11 @@ function HtmlToView (data) {
 }
 
 function DrawBreadroom (pach) {
-	var dirs = pach.split('/');
-	var pach = "/";
-	var html = "<div class='Bread' onclick='OpenDir(\"/\")'>Корень/</div>";
+	var dirs = pach.split(pach_separator);
+	var pach = pach_root;
+	var html = "<div class='Bread' onclick='OpenDir(\"" + pach_root + "\")'>Корень/</div>";
 	for (var x=1; dirs[x]; x++) {
-		pach += dirs[x] + "/";
+		pach += dirs[x] + pach_separator;
 		html += "<div class='Bread' onclick='OpenDir(\"" + pach + "\")'>" + dirs[x] + "/</div>";
 	}
 	document.getElementById("Head_Files").innerHTML = html;
