@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Анализатор логов</title>
-    <script src="scripts/system.js"></script>
-    <script src="scripts/keyboard.js"></script>
+	<head>
+		<meta charset="UTF-8">
+		<title>Анализатор логов</title>
+		<script src="scripts/system.js"></script>
+		<script src="scripts/keyboard.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="templates/cyber_2/main.css" />
-    <script src="templates/cyber_2/main.js"></script>
-  </head>
-  <body>
-  <!--We are using node <script>document.write(process.versions.node)</script>,
-  Chromium <script>document.write(process.versions.chrome)</script>,
-  and Electron <script>document.write(process.versions.electron)</script>.-->
+		<link rel="stylesheet" type="text/css" href="templates/cyber_2/main.css" />
+		<script src="templates/cyber_2/menu.js"></script>
+	</head>
+	<body>
+	<!--We are using node <script>document.write(process.versions.node)</script>,
+	Chromium <script>document.write(process.versions.chrome)</script>,
+	and Electron <script>document.write(process.versions.electron)</script>.-->
 
 
 	<!--     Menu     -->
@@ -31,73 +31,68 @@
 		</nobr>
 	</div>
 
-    <div id="Menu_Body_Separator"></div>
-    <script type="text/javascript">
-    Menu_Body_Separator.onmousedown = function(e) {Enable_Change_Menu_Width (e);}
-    document.body.onmouseup = function(e) {Disable_Change_Menu_Width (e);}
-    document.body.onmousemove = function(e) {Change_Menu_Width (e);}
-    </script>
+	<!--     Menu / Body   Separator     -->
+	<div id="Menu_Body_Separator"></div>
+	<script type="text/javascript">
+	Menu_Body_Separator.onmousedown = function(e) {Enable_Change_Menu_Width (e);}
+	document.body.onmouseup = function(e) {Disable_Change_Menu_Width (e);}
+	document.body.onmousemove = function(e) {Change_Menu_Width (e);}
+	</script>
 
 
 
 
+	<!--     Body     -->
+	<div id="Body_Holder">
+
+		<!--   Main   -->
+		<!--<div id="Main">
+			<script type="text/javascript">
+			document.write(ReadFileSync("./main.html"));
+			</script>
+		</div>-->
+
+		<!--   Files   -->
+		<div id="Files" style="height:100%;">
+			<script src="./files.js"></script>
+			<script type="text/javascript">
+			document.write(ReadFileSync("./files.html"));
+			</script>
+		</div>
+
+		<!--   Terminal   -->
+		<div id="Trminal" style="display:none;height:100%;">
+			<script src="./terminal.js"></script>
+			<script type="text/javascript">
+			document.write(ReadFileSync("./terminal.html"));
+			</script>
+		</div>
+
+		<!--   Settings   -->
+		<div id="Settings" style="display:none;height:100%;">
+			<script src="./settings.js"></script>
+			<script type="text/javascript">
+			document.write(ReadFileSync("./settings.html"));
+			</script>
+		</div>
+
+	</div>
 
 
 
 
-    <!--     Body     -->
-    <div id="Body_Holder">
-
-      <!--   Main   -->
-      <!--<div id="Main">
-        <script type="text/javascript">
-          document.write(ReadFileSync("./main.html"));
-        </script>
-	</div>-->
-
-      <!--   Files   -->
-      <div id="Files" style="height:100%;">
-        <script type="text/javascript">
-          document.write(ReadFileSync("./files.html"));
-        </script>
-      </div>
-
-	  <!--   Terminal   -->
-      <div id="Trminal" style="display:none;height:100%;">
-        <script type="text/javascript">
-          document.write(ReadFileSync("./terminal.html"));
-        </script>
-      </div>
-
-      <!--   Settings   -->
-      <div id="Settings" style="display:none;height:100%;">
-		<script src="./settings.js"></script>
-        <script type="text/javascript">
-          document.write(ReadFileSync("./settings.html"));
-        </script>
-      </div>
-
-    </div>
+	<!--     Bottom Menu     -->
+	<div class="Bottom_Menu_Holder">
+		<!--   Menu   -->
+		<img class="Clicable" src="images/menu.png" style="height:28px;" onclick="Button_Main_Menu()">
+		<!--   DevTools   -->
+		<span style="float:right;text-align:right;">
+			<img class="Clicable" src="images/settings.png" style="height:14px;padding:7px;" onclick="Button_DevTools();">
+		</span>
+	</div>
 
 
-
-
-
-
-
-
-    <!--     Bottom Menu     -->
-    <div class="Bottom_Menu_Holder">
-      <!--   Menu   -->
-      <img class="Clicable" src="images/menu.png" style="height:28px;" onclick="Button_Main_Menu()">
-      <!--   DevTools   -->
-      <span style="float:right;text-align:right;">
-        <img class="Clicable" src="images/settings.png" style="height:14px;padding:7px;" onclick="Button_DevTools();">
-      </span>
-    </div>
-
-
-  </body>
+	</body>
 </html>
 
 
@@ -105,19 +100,19 @@
 
 
 <script type="text/javascript">
-  //   Open/Close DevTools   //
-  var mainWindow = require('electron').remote.getGlobal('mainWindow');
-  function Button_DevTools () {
-    if (mainWindow.webContents.isDevToolsOpened()) {
-      mainWindow.webContents.closeDevTools();
-    }
-    else {
-      mainWindow.webContents.openDevTools();
-    }
-  }
+	//   Open/Close DevTools   //
+	var mainWindow = require('electron').remote.getGlobal('mainWindow');
+	function Button_DevTools () {
+		if (mainWindow.webContents.isDevToolsOpened()) {
+			mainWindow.webContents.closeDevTools();
+		}
+		else {
+			mainWindow.webContents.openDevTools();
+		}
+	}
 
 
-  //   Add Keyboard Events   //
-  function OnEnter() {RunCommand ();}
-  function OnEscape() {Button_Main_Menu ();}
+	//   Add Keyboard Events   //
+	function OnEnter() {RunCommand ();}
+	function OnEscape() {Button_Main_Menu ();}
 </script>

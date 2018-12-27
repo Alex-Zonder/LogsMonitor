@@ -1,0 +1,12 @@
+{
+	"files_hilight": [
+		{"enabled":true,"name":"Red","color":"red","value":".js"},
+		{"enabled":true,"name":"Yellow","color":"yellow","value":".html"},
+		{"enabled":true,"name":"Green","color":"green","value":".md"}
+	],
+	"text_hilight": {
+		"red":"Error",
+		"yellow":"USART",
+		"green":"#03"
+	}
+}

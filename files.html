@@ -1,3 +1,4 @@
+<!-- ----------------------   Style   ---------------------- -->
 <style media="screen">
 .Bread {
 	cursor:pointer;
@@ -30,7 +31,11 @@
 </style>
 
 
-<div class="Head" id="Head_Files"></div>
+<!-- ----------------------   Body   ---------------------- -->
+<div class="Head">
+	<div id="Head_Files" style="width:50%;float:left;text-align:left;"></div>
+	<div id="Head_Files_File" style="width:50%;float:right;text-align:right;"></div>
+</div>
 <div class="Body_Block" style="height:calc(100% - 62px);">
   <div style="width:199px;border-right:1px solid black;float:left;height:100%;overflow:auto;background:var(--color_2);">
 	  <div id="File_Manager" style="width:100%;"></div>
@@ -45,6 +50,7 @@
 
 
 
+<!-- ----------------------   Script   ---------------------- -->
 <script type="text/javascript">
 function HtmlToView (data) {
 	data = data.replace(new RegExp('<','g'), "&lt");
@@ -57,28 +63,34 @@ function HtmlToView (data) {
 function DrawBreadroom (pach) {
 	var dirs = pach.split(pach_separator);
 	var pach = pach_root;
-	var html = "<div class='Bread' onclick='OpenDir(\"" + pach_root + "\")'>Корень/</div>";
+	var html = "<div class='Bread' onclick='OpenDir(\"" + pach + "\")'>" +pach_root + "</div>";
 	for (var x=1; dirs[x]; x++) {
 		pach += dirs[x] + pach_separator;
-		html += "<div class='Bread' onclick='OpenDir(\"" + pach + "\")'>" + dirs[x] + "/</div>";
+		html += "<div class='Bread' onclick='OpenDir(\"" + pach + "\")'>" + dirs[x];
+		if (dirs[x + 1]) html += pach_separator;
+		html += "</div>";
 	}
 	document.getElementById("Head_Files").innerHTML = html;
 }
 
 
 function OpenFile (pach,file) {
+	Head_Files_File.innerHTML = setts.Hilight_File(file);
+
+	// Open file //
 	var data = ReadFileSync (pach + file);
 
+	// Calc file //
 	var file_lenght = data.length;
 	var str_counter = data.split('\n').length;
 
 	data = HtmlToView(data);
 
+	// View file //
 	File_Bowser.innerHTML = Hilight(data);
 	//File_Bowser_Textarea.innerHTML = data;
 
-	DrawBreadroom (pach + file);
-
+	// View file info //
 	if (file_lenght<1024) file_lenght += " Б";
 	else if (file_lenght<1024*1024) file_lenght = (file_lenght / 1024).toFixed(2) + " кБ";
 	else if (file_lenght<1024*1024*1024) file_lenght = (file_lenght / 1024 / 1024).toFixed(2) + " мБ";
@@ -94,17 +106,17 @@ function OpenFile (pach,file) {
 
 
 
-function DrawDir (pach,file) {
-	var html = "<nobr><div class='Directory' onclick=\"OpenDir(\'" + pach + file + "/\')\">";
-	html += "<img src='./images/folder-2.png' height='16'style='margin: 3px 2px -3px 2px;'>" + file + '</div></nobr>';
+function DrawDir (pach,dir) {
+	var html = "<nobr><div class='Directory' onclick=\"OpenDir(\'" + pach + dir + "/\')\">";
+	html += "<img src='./images/folder-2.png' height='16'style='margin: 3px 2px -3px 2px;'>" + dir + '</div></nobr>';
 	File_Manager.innerHTML += html;
 }
 
 function DrawFile (pach,file) {
+	var setts = require('./settings.js');
+
 	var html = "<nobr><div class='File' onclick=\"OpenFile(\'" + pach + "\',\'" + file + "\')\">";
-	html += "<img src='./images/file-2.png' height='16'style='margin: 3px 6px -3px 6px;'>" + file + '</div></nobr>';
-	//var hil = require('./settings.js');
-	//html = hil.Hilight (html);
+	html += "<img src='./images/file-2.png' height='16'style='margin: 3px 6px -3px 6px;'>" + setts.Hilight_File (file) + '</div></nobr>';
 	File_Manager.innerHTML += html;
 }
 
