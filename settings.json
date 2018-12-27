@@ -1,12 +1,14 @@
 {
-	"files_hilight": [
+	"files_highlight": [
 		{"enabled":true,"name":"Red","color":"red","value":".js"},
 		{"enabled":true,"name":"Yellow","color":"yellow","value":".html"},
-		{"enabled":true,"name":"Green","color":"green","value":".md"}
+		{"enabled":true,"name":"Green","color":"green","value":".md"},
+		{"enabled":true,"name":"Black","color":"black","value":".zip"}
 	],
-	"text_hilight": {
-		"red":"Error",
-		"yellow":"USART",
-		"green":"#03"
-	}
+	"text_highlight": [
+		{"enabled":true,"name":"Red","color":"red","value":"info"},
+		{"enabled":true,"name":"Yellow","color":"yellow","value":"block"},
+		{"enabled":true,"name":"Green","color":"green","value":"name"},
+		{"enabled":true,"name":"Black","color":"black","value":"Files"}
+	]
 }

@@ -1,39 +1,39 @@
 //------------   Load Setts From File   ------------//
 var settings = FromJson(ReadFileSync("./settings.json"));
 module.exports.settings = settings;
+//------------   Save Setts From File   ------------//
+function SaveSettings () {
+	var setts = require('./settings.js');
+	WriteFileSync("./settings.json",ToJson(setts.settings));
+}
 
 
 
 
-//------------   Hilight Files (String)   ------------//
-var Hilight_File = function (data) {
-	for (var x=0; settings["files_hilight"][x]; x++) {
-		if (data.indexOf(settings["files_hilight"][x]["value"]) + 1)
-			data = "<font color='" + settings["files_hilight"][x]["color"] + "'>" + data + "</font>";
+//------------   Highlight Files   ------------//
+var Highlight_File = function (data) {
+	var setts = require('./settings.js');
+	for (var x=0; setts.settings["files_highlight"][x]; x++) {
+		if (data.indexOf(setts.settings["files_highlight"][x]["value"]) + 1)
+			data = "<font color='" + setts.settings["files_highlight"][x]["color"] + "'>" + data + "</font>";
 	}
-
 	return data;
 }
-module.exports.Hilight_File = Hilight_File;
+module.exports.Highlight_File = Highlight_File;
 
 
-//------------   Hilight Text   ------------//
-var Hilight = function (data) {
-  // Red //
-  var data_red = document.getElementById("Input_Hilight_Red").value;
-  if (data_red != "")
-    data = data.replace(new RegExp(data_red, 'g'), "<font color='red'>" + data_red + "</font>");
 
-  // Green //
-  var data_green = document.getElementById("Input_Hilight_Green").value;
-  if (data_green != "")
-    data = data.replace(new RegExp(data_green, 'g'), "<font color='green'>" + data_green + "</font>");
 
-  // Yellow //
-  var data_yellow = document.getElementById("Input_Hilight_Yellow").value;
-  if (data_yellow != "")
-    data = data.replace(new RegExp(data_yellow, 'g'), "<font color='yellow'>" + data_yellow + "</font>");
-
-  return data;
+//------------   Highlight Text   ------------//
+var Highlight = function (data) {
+	var setts = require('./settings.js');
+	for (var x=0; setts.settings["text_highlight"][x]; x++) {
+		if (setts.settings["text_highlight"][x]["enabled"]) {
+			var value = setts.settings["text_highlight"][x]["value"];
+			var color = setts.settings["text_highlight"][x]["color"];
+			data = data.replace(new RegExp(value, 'g'), "<font color='" + color + "'>" + value + "</font>");
+		}
+	}
+	return data;
 }
-module.exports.Hilight = Hilight;
+module.exports.Highlight = Highlight;

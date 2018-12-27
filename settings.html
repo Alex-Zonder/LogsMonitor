@@ -5,72 +5,132 @@
 
 
 
-<!-- ----------------------   Hilight Files   ---------------------- -->
+<!-- ----------------------   Highlight Files   ---------------------- -->
 <div class="info_block">
-	<div class="info_block_name">Files Hilight</div>
+	<div class="info_block_name">Files Highlight</div>
 	<table width="100%">
 		<tr>
-			<td><font color="red">Red Hilight</font></td>
+			<td width="50%"><font color="red">Red Highlight</font></td>
 			<td align="right">
-				<input type="text" id="Input_Hilight_Files_Red" size="18" onkeyup="Ghange_Files_Hilight ('0')" />
+				<input type="text" id="Input_Highlight_Files_Red" size="26" onkeyup="Change_Files_Highlight ('0')" />
 				<script>
-					Input_Hilight_Files_Red.value = settings["files_hilight"][0]["value"];
+					Input_Highlight_Files_Red.value = settings["files_highlight"][0]["value"];
 				</script>
 			</td>
 		</tr>
 		<tr>
-			<td><font color="yellow">Yellow Hilight</font></td>
+			<td width="50%"><font color="yellow">Yellow Highlight</font></td>
 			<td align="right">
-				<input type="text" id="Input_Hilight_Files_Yellow" size="18" onkeyup="Ghange_Files_Hilight ('1')" />
+				<input type="text" id="Input_Highlight_Files_Yellow" size="26" onkeyup="Change_Files_Highlight ('1')" />
 				<script>
-					Input_Hilight_Files_Yellow.value = settings["files_hilight"][1]["value"];
+					Input_Highlight_Files_Yellow.value = settings["files_highlight"][1]["value"];
 				</script>
 			</td>
 		</tr>
 		<tr>
-			<td><font color="green">Green Hilight</font></td>
+			<td width="50%"><font color="green">Green Highlight</font></td>
 			<td align="right">
-				<input type="text" id="Input_Hilight_Files_Green" size="18" onkeyup="Ghange_Files_Hilight ('2')" />
+				<input type="text" id="Input_Highlight_Files_Green" size="26" onkeyup="Change_Files_Highlight ('2')" />
 				<script>
-					Input_Hilight_Files_Green.value = settings["files_hilight"][2]["value"];
+					Input_Highlight_Files_Green.value = settings["files_highlight"][2]["value"];
+				</script>
+			</td>
+		</tr>
+		<tr>
+			<td width="50%"><font color="black">Black Highlight</font></td>
+			<td align="right">
+				<input type="text" id="Input_Highlight_Files_Black" size="26" onkeyup="Change_Files_Highlight ('3')" />
+				<script>
+					Input_Highlight_Files_Black.value = settings["files_highlight"][3]["value"];
 				</script>
 			</td>
 		</tr>
 	</table>
 </div>
 <script>
-	var setts = require('./settings.js');
-	function Ghange_Files_Hilight (id) {
-		setts.settings["files_hilight"][id]["value"] = document.getElementById('Input_Hilight_Files_' + setts.settings["files_hilight"][id]["name"]).value;
-	}
+var setts = require('./settings.js');
+//function Fill_Files_Hihglight () {}
+function Change_Files_Highlight (id) {
+	setts.settings["files_highlight"][id]["value"] = document.getElementById('Input_Highlight_Files_' + setts.settings["files_highlight"][id]["name"]).value;
+}
 </script>
 
 
-<!-- ----------------------   Hilight Text   ---------------------- -->
+
+
+<!-- ----------------------   Highlight Text   ---------------------- -->
 <div class="info_block">
-	<div class="info_block_name">Подсветка текста</div>
+	<div class="info_block_name">Text Highlight</div>
 	<table width="100%">
-	  <tr>
-	    <td><font color="red">Подсветить:</font></td>
-	    <td align="right"><input type="text" id="Input_Hilight_Red" value="timeout" size="18" /></td>
-	  </tr>
-	  <tr>
-	    <td><font color="green">Подсветить:</font></td>
-	    <td align="right"><input type="text" id="Input_Hilight_Green" value="8.8.8.8" size="18" /></td>
-	  </tr>
-	  <tr>
-	    <td><font color="yellow">Подсветить:</font></td>
-	    <td align="right"><input type="text" id="Input_Hilight_Yellow" value="aleksandrpilipenko" size="18" /></td>
-	  </tr>
+		<tr>
+			<td width="50%"><font color="red">Red Highlight</font></td>
+			<td align="right">
+				<input type="text" id="Input_Highlight_Text_Red" size="26" onkeyup="Change_Text_Highlight (0)" />
+				<script>
+					Input_Highlight_Text_Red.value = settings["text_highlight"][0]["value"];
+				</script>
+			</td>
+		</tr>
+		<tr>
+			<td width="50%"><font color="yellow">Yellow Highlight</font></td>
+			<td align="right">
+				<input type="text" id="Input_Highlight_Text_Yellow" size="26" onkeyup="Change_Text_Highlight (1)" />
+				<script>
+					Input_Highlight_Text_Yellow.value = settings["text_highlight"][1]["value"];
+				</script>
+			</td>
+		</tr>
+		<tr>
+			<td width="50%"><font color="green">Green Highlight</font></td>
+			<td align="right">
+				<input type="text" id="Input_Highlight_Text_Green" size="26" onkeyup="Change_Text_Highlight (2)" />
+				<script>
+					Input_Highlight_Text_Green.value = settings["text_highlight"][2]["value"];
+				</script>
+			</td>
+		</tr>
+		<tr>
+			<td width="50%"><font color="black">Black Highlight</font></td>
+			<td align="right">
+				<input type="text" id="Input_Highlight_Text_Black" size="26" onkeyup="Change_Text_Highlight (3)" />
+				<script>
+					Input_Highlight_Text_Black.value = settings["text_highlight"][3]["value"];
+				</script>
+			</td>
+		</tr>
 	</table>
 </div>
+<script>
+//function Fill_Text_Hihglight () {}
+function Change_Text_Highlight (id) {
+	var elem = document.getElementById('Input_Highlight_Text_' + setts.settings["text_highlight"][id]["name"]);
+	setts.settings["text_highlight"][id]["value"] = elem.value;
+	//elem.value = 'info';
+}
+</script>
+
+
+
+
+<!-- ----------------------   Save Settins   ---------------------- -->
+<hr><button type="button" onclick="SaveSettings()">Save settings</button><hr>
+
+
 
 
 <!-- ----------------------   Dev Settings   ---------------------- -->
 <div class="info_block">
-	<div class="info_block_name">Натсройки разработчика</div>
-	<center>Os: <script type="text/javascript"> document.write(platform); </script><br>
-	Окно разработчика: <input type="button" name="" value="Открыть / Закрыть" onclick="Button_DevTools();"></center>
+	<div class="info_block_name">Developer tools</div>
+	<center><table width=100%>
+		<tr>
+			<td width="50%" align="right">Os: </td>
+			<td><script type="text/javascript"> document.write(platform); </script></td>
+		</tr>
+		<tr>
+			<td width="50%" align="right">Dev Tools</td>
+			<td><input type="button" name="" value="Open / Close" onclick="Button_DevTools();"></td>
+		</tr>
+	</table></center>
 </div>
 
 

@@ -52,6 +52,7 @@
 
 <!-- ----------------------   Script   ---------------------- -->
 <script type="text/javascript">
+// ------------   Working whith file   ------------ //
 function HtmlToView (data) {
 	data = data.replace(new RegExp('<','g'), "&lt");
 	data = data.replace(new RegExp('\r?\n','g'), "<br>");
@@ -60,22 +61,8 @@ function HtmlToView (data) {
 	return data;
 }
 
-function DrawBreadroom (pach) {
-	var dirs = pach.split(pach_separator);
-	var pach = pach_root;
-	var html = "<div class='Bread' onclick='OpenDir(\"" + pach + "\")'>" +pach_root + "</div>";
-	for (var x=1; dirs[x]; x++) {
-		pach += dirs[x] + pach_separator;
-		html += "<div class='Bread' onclick='OpenDir(\"" + pach + "\")'>" + dirs[x];
-		if (dirs[x + 1]) html += pach_separator;
-		html += "</div>";
-	}
-	document.getElementById("Head_Files").innerHTML = html;
-}
-
-
 function OpenFile (pach,file) {
-	Head_Files_File.innerHTML = setts.Hilight_File(file);
+	Head_Files_File.innerHTML = setts.Highlight_File(file);
 
 	// Open file //
 	var data = ReadFileSync (pach + file);
@@ -87,7 +74,7 @@ function OpenFile (pach,file) {
 	data = HtmlToView(data);
 
 	// View file //
-	File_Bowser.innerHTML = Hilight(data);
+	File_Bowser.innerHTML = Highlight(data);
 	//File_Bowser_Textarea.innerHTML = data;
 
 	// View file info //
@@ -106,6 +93,21 @@ function OpenFile (pach,file) {
 
 
 
+
+// ------------   Working whith dir   ------------ //
+function DrawBreadroom (pach) {
+	var dirs = pach.split(pach_separator);
+	var pach = pach_root;
+	var html = "<div class='Bread' onclick='OpenDir(\"" + pach + "\")'>" +pach_root + "</div>";
+	for (var x=1; dirs[x]; x++) {
+		pach += dirs[x] + pach_separator;
+		html += "<div class='Bread' onclick='OpenDir(\"" + pach + "\")'>" + dirs[x];
+		if (dirs[x + 1]) html += pach_separator;
+		html += "</div>";
+	}
+	document.getElementById("Head_Files").innerHTML = html;
+}
+
 function DrawDir (pach,dir) {
 	var html = "<nobr><div class='Directory' onclick=\"OpenDir(\'" + pach + dir + "/\')\">";
 	html += "<img src='./images/folder-2.png' height='16'style='margin: 3px 2px -3px 2px;'>" + dir + '</div></nobr>';
@@ -116,13 +118,12 @@ function DrawFile (pach,file) {
 	var setts = require('./settings.js');
 
 	var html = "<nobr><div class='File' onclick=\"OpenFile(\'" + pach + "\',\'" + file + "\')\">";
-	html += "<img src='./images/file-2.png' height='16'style='margin: 3px 6px -3px 6px;'>" + setts.Hilight_File (file) + '</div></nobr>';
+	html += "<img src='./images/file-2.png' height='16'style='margin: 3px 6px -3px 6px;'>" + setts.Highlight_File (file) + '</div></nobr>';
 	File_Manager.innerHTML += html;
 }
 
-var root_pach = __dirname + "/";
+var root_pach = __dirname + pach_separator;
 var pach = root_pach;
-//var pach = '/Users/aleksandrpilipenko/myhome/logs/myhome/';
 function OpenDir (pach) {
 	File_Manager.innerHTML = "";
 	ReadDirToArraySync (pach, function (files) {
@@ -141,7 +142,6 @@ function OpenDir (pach) {
 				files_counter++;
 			}
 		}
-		//File_Manager.innerHTML += "<hr>" + ToJson(files);
 		File_Info_Dir.innerHTML = "Папок: " + dirs_counter + " | Файлов: " + files_counter;
 	});
 }
