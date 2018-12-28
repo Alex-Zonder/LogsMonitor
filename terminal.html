@@ -59,7 +59,7 @@
   }
   function ExecReturn (data) { //aleksandrpilipenko
     data = data.replace(new RegExp('\r?\n','g'), "<br />");
-    data = Hilight(data);
+    data = Highlight(data);
     if (data == "STOPED") data += "<hr>";
 
     document.getElementById('Div_Terminal_Return').innerHTML += data;

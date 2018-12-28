@@ -14,8 +14,14 @@ function SaveSettings () {
 var Highlight_File = function (data) {
 	var setts = require('./settings.js');
 	for (var x=0; setts.settings["files_highlight"][x]; x++) {
-		if (data.indexOf(setts.settings["files_highlight"][x]["value"]) + 1)
-			data = "<font color='" + setts.settings["files_highlight"][x]["color"] + "'>" + data + "</font>";
+		if (setts.settings["files_highlight"][x]["enabled"]) {
+			var values = setts.settings["files_highlight"][x]["value"].split(",");
+			for (var y=0; values[y]; y++)
+				if (data.indexOf(values[y]) + 1) {
+					var color = setts.settings["files_highlight"][x]["color"];
+					data = "<font color='" + color + "'>" + data + "</font>";
+				}
+		}
 	}
 	return data;
 }
@@ -29,9 +35,10 @@ var Highlight = function (data) {
 	var setts = require('./settings.js');
 	for (var x=0; setts.settings["text_highlight"][x]; x++) {
 		if (setts.settings["text_highlight"][x]["enabled"]) {
-			var value = setts.settings["text_highlight"][x]["value"];
 			var color = setts.settings["text_highlight"][x]["color"];
-			data = data.replace(new RegExp(value, 'g'), "<font color='" + color + "'>" + value + "</font>");
+			var values = setts.settings["text_highlight"][x]["value"].split(",");
+			for (var y=0; values[y]; y++)
+				data = data.replace(new RegExp(values[y], 'g'), "<font color='" + color + "'>" + values[y] + "</font>");
 		}
 	}
 	return data;
