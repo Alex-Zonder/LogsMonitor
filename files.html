@@ -52,6 +52,7 @@
 
 <!-- ----------------------   Script   ---------------------- -->
 <script type="text/javascript">
+var settings_js = require('./settings.js');
 // ------------   Working whith file   ------------ //
 function HtmlToView (data) {
 	data = data.replace(new RegExp('<','g'), "&lt");
@@ -62,7 +63,7 @@ function HtmlToView (data) {
 }
 
 function OpenFile (pach,file) {
-	Head_Files_File.innerHTML = setts.Highlight_File(file);
+	Head_Files_File.innerHTML = settings_js.Highlight_File(file);
 
 	// Open file //
 	var data = ReadFileSync (pach + file);
@@ -115,10 +116,8 @@ function DrawDir (pach,dir) {
 }
 
 function DrawFile (pach,file) {
-	var setts = require('./settings.js');
-
 	var html = "<nobr><div class='File' onclick=\"OpenFile(\'" + pach + "\',\'" + file + "\')\">";
-	html += "<img src='./images/file-2.png' height='16'style='margin: 3px 6px -3px 6px;'>" + setts.Highlight_File (file) + '</div></nobr>';
+	html += "<img src='./images/file-2.png' height='16'style='margin: 3px 6px -3px 6px;'>" + settings_js.Highlight_File (file) + '</div></nobr>';
 	File_Manager.innerHTML += html;
 }
 

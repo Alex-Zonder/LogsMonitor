@@ -1,12 +1,12 @@
 //     OS     //
 //  'darwin', 'freebsd', 'linux', 'sunos' or 'win32'. //
-var pach_separator = "/";
-var pach_root = "/";
+var pach_separator = '/';
+var pach_root = '/';
 var os = require('os');
 var platform = os.platform();
 if (platform == 'win32') {
-	pach_separator = "\\";
-	pach_root = "C:\\";
+	pach_separator = '\\';
+	pach_root = 'C:\\';
 }
 
 
