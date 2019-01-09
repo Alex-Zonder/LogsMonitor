@@ -3,17 +3,20 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Анализатор логов</title>
+		<!-- Scripts -->
 		<script src="scripts/system.js"></script>
 		<script src="scripts/keyboard.js"></script>
 		<script src="scripts/cookies.js"></script>
+		<script src="scripts/transition.js"></script>
+		<script src="scripts/file_manager.js"></script>
+		<script src="scripts/highlight.js"></script>
 
+		<!-- Style -->
 		<link rel="stylesheet" type="text/css" href="templates/cyber_2.0/main.css" />
 		<script src="templates/cyber_2.0/menu.js"></script>
+		<!--<script src="templates/cyber_2/js/main_menu.js"></script>-->
 	</head>
 	<body>
-	<!--We are using node <script>document.write(process.versions.node)</script>,
-	Chromium <script>document.write(process.versions.chrome)</script>,
-	and Electron <script>document.write(process.versions.electron)</script>.-->
 
 
 	<!--     Menu     -->
@@ -21,13 +24,12 @@
 		<div id="Head">Меню</div>
 		<nobr>
 
-		<!--<div class="menu_but_clicked" id="But_Main" onclick="MenuOpen('Main');">- Главная</div>-->
 		<div class="menu_but_clicked" id="But_Files" onclick="MenuOpen('Files');">
-			<img src="./images/folder.png" height='22'style='margin: 3px 2px -3px 2px;'> Файлы</div>
+			<img src="./images/folder.png" height='22' style='margin: 3px 2px -3px 2px;'> Файлы</div>
 		<div class="menu_but" id="But_Trminal" onclick="MenuOpen('Trminal');">
-			<img src="./images/term-3.png" height='22'style='margin: 3px 2px -3px 2px;'> Терминал</div>
+			<img src="./images/term-3.png" height='22' style='margin: 3px 2px -3px 2px;'> Терминал</div>
 		<div class="menu_but" id="But_Settings" onclick="MenuOpen('Settings');">
-			<img src="./images/settings.png" height='20'style='margin: 3px 4px -3px 4px;'> Настройки</div>
+			<img src="./images/settings.png" height='20' style='margin: 3px 4px -3px 4px;'> Настройки</div>
 
 		</nobr>
 	</div>
@@ -35,9 +37,9 @@
 	<!--     Menu / Body   Separator     -->
 	<div id="Menu_Body_Separator"></div>
 	<script type="text/javascript">
-	Menu_Body_Separator.onmousedown = function(e) {Enable_Change_Menu_Width (e);}
-	document.body.onmouseup = function(e) {Disable_Change_Menu_Width (e);}
-	document.body.onmousemove = function(e) {Change_Menu_Width (e);}
+		Menu_Body_Separator.onmousedown = function(e) {Enable_Change_Menu_Width (e);}
+		document.body.onmouseup = function(e) {Disable_Change_Menu_Width (e);}
+		document.body.onmousemove = function(e) {Change_Menu_Width (e);}
 	</script>
 
 
@@ -46,20 +48,13 @@
 	<!--     Body     -->
 	<div id="Body_Holder">
 
-		<!--   Main   -->
-		<!--<div id="Main">
-			<script type="text/javascript">
-			document.write(ReadFileSync("./main.html"));
-			</script>
-		</div>-->
-
 		<!--   Files   -->
-		<script src="./files.js"></script>
 		<div id="Files" style="height:100%;">
 			<script>
 				document.write(ReadFileSync("./files.html"));
 			</script>
 		</div>
+		<script src="./files.js"></script>
 
 		<!--   Terminal   -->
 		<script src="./terminal.js"></script>

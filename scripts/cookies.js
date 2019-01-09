@@ -1,3 +1,5 @@
+var cookie_prefix = cookie_prefix || '';
+
 function setCookie(name, value, options) {
 	if (cookie_prefix) name = cookie_prefix + name;
 
