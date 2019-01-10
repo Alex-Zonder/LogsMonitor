@@ -115,7 +115,7 @@ tr:hover{background: var(--color_2);}
 /*					Menu Buts					*/
 .menu_but, .menu_but_clicked{
 	border-bottom: 1px solid black;
-	width: calc(100%);
+	width: calc(100% - 5px);
 	margin: 0px;
 	padding: 10px 0px 10px 5px;
 	font-size:14px;

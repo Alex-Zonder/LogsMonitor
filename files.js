@@ -64,6 +64,7 @@ function DrawFile (pach,file) {
 var root_pach = __dirname + pach_separator;
 var pach = root_pach;
 function OpenDir (pach) {
+	pach = pach.split('\\').join('/');
 	File_Manager.innerHTML = "";
 	ReadDirToArraySync (pach, function (files) {
 		DrawBreadroom (pach);
