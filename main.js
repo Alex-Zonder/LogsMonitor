@@ -9,7 +9,7 @@ global.mainWindow = null
 function createWindow () {
   mainWindow = new BrowserWindow({width: 1152, height: 648})
 	mainWindow.loadURL(`file://${__dirname}/index.html`)
-
+mainWindow.setMenu(null);
 	// Emitted when the window is closed.
 	mainWindow.on('closed', function () {
 		mainWindow = null

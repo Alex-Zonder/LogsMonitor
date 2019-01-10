@@ -39,10 +39,10 @@ function OpenFile (pach,file) {
 function DrawBreadroom (pach) {
 	var dirs = pach.split(pach_separator);
 	var pach = pach_root;
-	var html = "<div class='Bread' onclick='OpenDir(\"" + pach + "\")'>" +pach_root + "</div>";
+	var html = "<div class='Bread' onclick='OpenDir(\"" + pach + "\");'>" +pach_root + "</div>";
 	for (var x=1; dirs[x]; x++) {
 		pach += dirs[x] + pach_separator;
-		html += "<div class='Bread' onclick='OpenDir(\"" + pach + "\")'>" + dirs[x];
+		html += "<div class='Bread' onclick='OpenDir(\"" + pach + "\");'>" + dirs[x];
 		if (dirs[x + 1]) html += pach_separator;
 		html += "</div>";
 	}

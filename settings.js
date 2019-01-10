@@ -3,7 +3,7 @@ var settings_js = require('./settings.js');
 //------------   Load settings_js From File   ------------//
 var settings = FromJson(ReadFileSync("./settings.json"));
 module.exports.settings = settings;
-//------------   Save settings_js To File   ------------//
+//------------   Save settings To File   ------------//
 function SaveSettings () {
 	WriteFileSync("./settings.json",ToJson(settings_js.settings));
 }
