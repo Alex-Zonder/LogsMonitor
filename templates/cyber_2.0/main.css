@@ -12,7 +12,7 @@ body, html{
   color: white;
   -webkit-user-select: none;
 
-	font-size:14px;
+	font-size:12px;
 	line-height: 1.6;
 	font-family:"Trebuchet MS", verdana, arial, "Times New Roman", serif;
 }
@@ -25,7 +25,7 @@ input[type=text]{
   border-radius: 0px;
   background: #2c3942;
 }*/
-table{font-size: 14px;}
+table{font-size: 12px;}
 tr{background: var(--color_1);}
 tr:hover{background: var(--color_2);}
 .Clicable {

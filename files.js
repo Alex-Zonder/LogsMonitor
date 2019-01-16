@@ -10,7 +10,7 @@ function HtmlToText (data) {
 
 var file_opened;
 function OpenFile (pach,file) {
-	Head_Files_File.innerHTML = Highlight_File(file);
+	Head_Files_File.innerHTML = Highlight_File(file.split('/')[file.split('/').length - 1]);
 
 	// Open file //
 	file_opened = pach + file;
@@ -22,8 +22,8 @@ function OpenFile (pach,file) {
 	}
 
 	// Calc file //
-	var file_lenght = data.length - 1;
-	var str_counter = data.split('\n').length;
+	var file_lenght = data.length;
+	var str_counter = data.split('\n').length - 1;
 
 	data = HtmlToText(data);
 

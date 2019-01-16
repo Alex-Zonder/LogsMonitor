@@ -1,14 +1,14 @@
 {
 	"files_highlight": [
-		{"enabled":true,"name":"Red","color":"red","value":"zip,dmg,bin"},
-		{"enabled":true,"name":"Yellow","color":"yellow","value":".html"},
+		{"enabled":true,"name":"Red","color":"#990033","value":"zip,dmg,bin"},
+		{"enabled":true,"name":"Yellow","color":"#cc8800","value":".html"},
 		{"enabled":true,"name":"Green","color":"teal","value":".log"},
 		{"enabled":true,"name":"Black","color":"black","value":".ini"}
 	],
 	"text_highlight": [
-		{"enabled":true,"name":"Red","color":"red","value":"error,Error,ERROR"},
-		{"enabled":true,"name":"Yellow","color":"yellow","value":"block"},
-		{"enabled":true,"name":"Green","color":"green","value":"name"},
+		{"enabled":true,"name":"Red","color":"#990033","value":"error,Error,ERROR"},
+		{"enabled":true,"name":"Yellow","color":"#cc8800","value":"block"},
+		{"enabled":true,"name":"Green","color":"teal","value":"name"},
 		{"enabled":true,"name":"Black","color":"black","value":"Files"}
 	]
 }
