@@ -18,6 +18,8 @@ function OpenFile (pach,file) {
 	var file_lenght = data.length;
 	var str_counter = data.split('\n').length;
 
+	data = Grep(data,"Dead");
+
 	data = HtmlToText(data);
 
 	// View file //
