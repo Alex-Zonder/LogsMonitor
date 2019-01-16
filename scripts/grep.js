@@ -1,3 +1,4 @@
+var grep;
 function Grep (data,grep) {
 	var new_data = "";
 	strings = data.split('\n');

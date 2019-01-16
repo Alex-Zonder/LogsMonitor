@@ -28,6 +28,23 @@
 	color: teal;
 	background:  var(--color_1);
 }
+
+
+
+.Command_Input{width:80%; float:left; height:30px; border-top: 1px solid grey;}
+.Command_Input>input[type=text]{width:100%;background: var(--color_1);border: 0px;text-align:left;font-size: 14px;padding: 0 5px 0 5px; height:100%;border-radius: 0;}
+
+#Command_Send{
+	width:20%;
+	background:  var(--color_2);
+	border-top: 1px solid grey;
+	text-align:center;cursor: pointer;
+	height:30px;
+	float: left;
+	padding: 5px 0 0 0;
+	-webkit-user-select: none;
+}
+#Command_Send:hover{background: var(--color_1);}
 </style>
 
 
@@ -36,7 +53,7 @@
 	<div id="Head_Files" style="width:50%;float:left;text-align:left;"></div>
 	<div id="Head_Files_File" style="width:50%;float:right;text-align:right;"></div>
 </div>
-<div class="Body_Block" style="height:calc(100% - 62px);">
+<div class="Body_Block" style="height:calc(100% - 93px);">
   <div style="width:199px;border-right:1px solid black;float:left;height:100%;overflow:auto;background:var(--color_2);">
 	  <div id="File_Manager" style="width:100%;"></div>
   </div>
@@ -46,3 +63,7 @@
 	<div id="File_Info_Dir" style="width:50%;float:left;text-align:left;"></div>
 	<div id="File_Info_File" style="width:50%;float:right;text-align:right;"></div>
 </div>
+<div class="Command_Input">
+	<input type="text" id="Input_Grep" size="50" placeholder="Filter word.." />
+</div>
+<div id="Command_Send" onclick="OpenFile('',file_opened);">Фильтр</div>

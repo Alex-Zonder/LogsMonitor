@@ -8,17 +8,19 @@ function HtmlToText (data) {
 	return data;
 }
 
+var file_opened;
 function OpenFile (pach,file) {
 	Head_Files_File.innerHTML = Highlight_File(file);
 
 	// Open file //
-	var data = ReadFileSync (pach + file);
+	file_opened = pach + file;
+	var data = ReadFileSync (file_opened);
 
 	// Calc file //
 	var file_lenght = data.length;
 	var str_counter = data.split('\n').length;
 
-	data = Grep(data,"Dead");
+	if (document.getElementById("Input_Grep").value != "") data = Grep(data,document.getElementById("Input_Grep").value);
 
 	data = HtmlToText(data);
 
