@@ -16,11 +16,14 @@ function OpenFile (pach,file) {
 	file_opened = pach + file;
 	var data = ReadFileSync (file_opened);
 
-	// Calc file //
-	var file_lenght = data.length;
-	var str_counter = data.split('\n').length;
+	// Grep //
+	if (document.getElementById("Input_Grep").value != "") {
+		data = Grep(data,document.getElementById("Input_Grep").value);
+	}
 
-	if (document.getElementById("Input_Grep").value != "") data = Grep(data,document.getElementById("Input_Grep").value);
+	// Calc file //
+	var file_lenght = data.length - 1;
+	var str_counter = data.split('\n').length;
 
 	data = HtmlToText(data);
 

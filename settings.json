@@ -1,9 +1,9 @@
 {
 	"files_highlight": [
-		{"enabled":true,"name":"Red","color":"#000000","value":".log"},
+		{"enabled":true,"name":"Red","color":"red","value":"zip,dmg,bin"},
 		{"enabled":true,"name":"Yellow","color":"yellow","value":".html"},
-		{"enabled":true,"name":"Green","color":"green","value":".md"},
-		{"enabled":true,"name":"Black","color":"black","value":".zip"}
+		{"enabled":true,"name":"Green","color":"teal","value":".log"},
+		{"enabled":true,"name":"Black","color":"black","value":".ini"}
 	],
 	"text_highlight": [
 		{"enabled":true,"name":"Red","color":"red","value":"error,Error,ERROR"},
