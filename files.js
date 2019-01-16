@@ -26,10 +26,15 @@ function OpenFile (pach,file) {
 	var str_counter = data.split('\n').length - 1;
 
 	data = HtmlToText(data);
+	data = Highlight(data);
+
+	// Grep HighLight //
+	if (document.getElementById("Input_Grep").value != "") {
+		data = HighLightText(data,document.getElementById("Input_Grep").value,"#4700b3");
+	}
 
 	// View file //
-	File_Bowser.innerHTML = Highlight(data);
-	//File_Bowser_Textarea.innerHTML = data;
+	File_Bowser.innerHTML = data;
 
 	// View file info //
 	if (file_lenght<1024) file_lenght += " Б";
